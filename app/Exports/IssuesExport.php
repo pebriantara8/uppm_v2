@@ -272,7 +272,7 @@ class IssuesExport implements FromView
                     } elseif ($jumlah_penulis > 2) {
                         $value['join_penulis'][0]->kum = 50;
                         if ($i > 0) {
-                            $value['join_penulis'][$i]->kum = 50 / ($jumlah_penulis - 2);
+                            $value['join_penulis'][$i]->kum = 50 / ($jumlah_penulis - 1);
                         }
                         $value = $value;
                     }
