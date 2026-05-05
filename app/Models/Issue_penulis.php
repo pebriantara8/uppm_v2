@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-class Issue_Penulis extends Model
+class Issue_penulis extends Model
 {
 
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, SoftDeletes;
 
     protected $fillable = [
         'issue_id',
@@ -26,15 +26,10 @@ class Issue_Penulis extends Model
         'status',
     ];
 
-    public function user()
-    {
-        // return $this->belongsTo(User::class, 'user_id', 'id');
-    }
-
     public function join_issue()
     {
         // return $this->belongsTo(Issue::class, 'user_id', 'id');
-        return $this->hasOne(Issue::class, 'id', 'issue_id');
+        // return $this->hasOne(Issue::class, 'id', 'issue_id');
     }
 
     protected $table = 'issue_penulis';
