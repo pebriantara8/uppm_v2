@@ -59,7 +59,7 @@
                                     </label>
                                 </div>
                                 <div class="dt-buttons btn-group flex-wrap">
-                                    <div class="btn-group"><button disabled
+                                    <div class="btn-group"><button
                                             class="btn btn-secondary dropdown-toggle mx-3 waves-effect waves-light"
                                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span><i class="ti ti-screen-share me-1 ti-xs"></i>Export</span>
@@ -67,7 +67,7 @@
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.issue.index') }}">Excel</a>
+                                                    href="{{ route('admin.issue.export_issue') }}">Excel</a>
                                             </li>
                                         </ul>
                                     </div>

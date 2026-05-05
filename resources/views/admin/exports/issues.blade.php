@@ -81,7 +81,7 @@
             @endif
             @if($new==0)
             <td rowspan="{{$rowspan}}">
-                {{$data->jenis_publikasi_name}}
+                {{$data->level_publikasi_name}}
             </td>
             @endif
             @if($new==0)
