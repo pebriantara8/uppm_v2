@@ -13,6 +13,8 @@
             <th>Link Publikasi</th>
             <th>Jenis Hak Cipta</th>
             <th>Nomor Hak Cipta/Paten</th>
+            <th>Bank</th>
+            <th>No. Rekening</th>
             <th>Biaya APC</th>
             <th>Reward Sesuai SK</th>
             <th>Reward KUM</th>
@@ -99,6 +101,12 @@
                 {{$data->no_hak_cipta}}
             </td>
             @endif
+            <td>
+                {{$jpv->penulis_bank}}
+            </td>
+            <td>
+                {{$jpv->no_rekening}}
+            </td>
             <td data-format="Rp#,##0_-">
                 @if($new==0)
                 {{$data->biaya_apc}}
