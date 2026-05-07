@@ -32,7 +32,7 @@
         <div class="app-header header-shadow">
             <div class="app-header__logo">
                 <!-- <div class="logo-src">asd</div> -->
-                <div class="" style="font-weight: 700;">LPPM PLPP</div>
+                <div class="" style="font-weight: 700;">UPPM PLPP</div>
                 <div class="header__pane ms-auto">
                     <div><button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
                             data-class="closed-sidebar"><span class="hamburger-box"><span
@@ -69,7 +69,7 @@
                                 <div class="widget-content-left">
                                     <div class="btn-group"><a data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" class="p-0 btn"><img width="42" class="rounded-circle"
-                                                src="{{ asset('storage/template') }}/assets/images/avatars/pengguna.jpg"
+                                                src="{{ Auth::user()->avatar ? asset('storage/admin/user_image').'/m_'.Auth::user()->avatar : asset('storage/template/assets/images/avatars/pengguna.jpg') }}"
                                                 alt=""> <i class="fa fa-angle-down ms-2 opacity-8"></i></a>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="dropdown-menu dropdown-menu-right">

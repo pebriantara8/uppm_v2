@@ -13,7 +13,7 @@
                             <div class="menu-header-content">
                                 <div class="avatar-icon-wrapper btn-hover-shine mb-2 avatar-icon-xl">
                                     <div class="avatar-icon rounded">
-                                        <img src="{{ asset('storage/template') }}/assets/images/avatars/pengguna.jpg"
+                                        <img src="{{ asset('storage/admin/user_image').'/m_'.$datas->avatar }}"
                                             alt="Avatar 6">
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                                         class="form-control" placeholder="Enter an email ...">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="message">Tentang Diri</label>
+                                    <label class="form-label" for="message">Tentang Saya</label>
                                     <textarea class="form-control" id="message" name="tentang" rows="3"
                                         placeholder="Enter a message ...">{{$datas->about}}</textarea>
                                 </div>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card-title">Avatar Profil</div>
-                                <img src="{{ asset('storage/template') }}/assets/images/avatars/pengguna.jpg"
+                                <img src="{{ asset('storage/admin/user_image').'/'.$datas->avatar }}"
                                     style="width: 100%;" alt="">
                                 <div class="mb-3">
                                     <label class="form-label" for="showEasing">Ganti Avatar</label>

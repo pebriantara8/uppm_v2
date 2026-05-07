@@ -12,12 +12,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
-
 use Illuminate\Support\Str;
 
 //import Facade "Storage" for image
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
+
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Alignment;
+use Intervention\Image\Format;
 
 class ProfileAdminController extends Controller
 {
@@ -203,8 +207,8 @@ class ProfileAdminController extends Controller
         if ($input['email'] !== $user->email) {
             $this->validate($request, [
                 'email' => 'required|unique:users,email',
-            ], [], [
-                'email' => 'Email sudah digunakan di akun lain',
+            ], [
+                'email.unique' => 'Email sudah digunakan di akun lain',
             ]);
         } else {
             $input = Arr::except($input, array('email'));
@@ -224,28 +228,29 @@ class ProfileAdminController extends Controller
             $input = Arr::except($input, array('pass_lama', 'pass_baru', 'pass_baru_konfirmasi'));
         }
 
-        $RR1 =  "GD: " . (extension_loaded('gd') ? 'Installed' : 'Missing') . "<br>";
-        $RR2 =  "Imagick: " . (extension_loaded('imagick') ? 'Installed' : 'Missing');
-        DD($RR2);
+        // $RR1 =  "GD: " . (extension_loaded('gd') ? 'Installed' : 'Missing') . "<br>";
+        // $RR2 =  "Imagick: " . (extension_loaded('imagick') ? 'Installed' : 'Missing');
+        // DD($RR2);
 
         // CEK APAKAH INPUT AVATAR BARU
+
         if ($request->file('avatar')) {
             $this->validate($request, [
                 'avatar' => 'image|mimes:jpeg,jpg,png,HEIC'
             ]);
 
-            $image = $request->file('avatar');
-            $img = Image::read($image);
-            dd('oke');
-            $img->resize(300, 300, function ($constraint) {
-                $constraint->aspectRatio();
-                // $constraint->upsize();
-            });
-            $file_name = $image->hashName();
-            $img->save(public_path('storage/admin/user_image/') . $file_name);
-            $input['avatar'] = $image->hashName();
+            $file = $request->file('avatar');
+            // $imageName = time() . '.' . $file->extension();
+            $imageName = $file->hashName();
+            // Load, resize, and save
+            $img = Image::decode($file->path());
+            // // $img = $manager->decodePath('images/example.webp');
+            $img->resize(300, 300)->save(public_path('storage/admin/user_image/' . $imageName));
+            $img->cover(100, 100)->save(public_path('storage/admin/user_image/m_' . $imageName));
 
-            Storage::delete('public/admin/user_image/' . $user->image);
+            $input['avatar'] = $imageName;
+            Storage::disk('public')->delete('admin/user_image/' . $user->avatar);
+            Storage::disk('public')->delete('admin/user_image/m_' . $user->avatar);
         } else {
             $input = Arr::except($input, array('avatar'));
         };

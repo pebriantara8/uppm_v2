@@ -58,6 +58,7 @@
                                         </form>
                                     </label>
                                 </div>
+                                @role('admin')
                                 <div class="dt-buttons btn-group flex-wrap">
                                     <div class="btn-group"><button
                                             class="btn btn-secondary dropdown-toggle mx-3 waves-effect waves-light"
@@ -72,6 +73,7 @@
                                         </ul>
                                     </div>
                                 </div>
+                                @endrole
                             </div>
                         </div>
                     </div>
