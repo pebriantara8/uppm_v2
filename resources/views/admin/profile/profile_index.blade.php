@@ -7,14 +7,16 @@
                 enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
+
                 <div class="card-hover-shadow profile-responsive mb-3 card">
                     <div class="dropdown-menu-header">
                         <div class="dropdown-menu-header-inner bg-success">
                             <div class="menu-header-content">
                                 <div class="avatar-icon-wrapper btn-hover-shine mb-2 avatar-icon-xl">
                                     <div class="avatar-icon rounded">
-                                        <img src="{{ asset('storage/admin/user_image').'/m_'.$datas->avatar }}"
+                                        <img src="{{ file_exists(public_path('storage/admin/user_image/m_').Auth::user()->avatar) ? asset('storage/admin/user_image/m_').Auth::user()->avatar : asset('storage/template/assets/images/avatars/pengguna.jpg') }}"
                                             alt="Avatar 6">
+
                                     </div>
                                 </div>
                                 <div>
@@ -80,7 +82,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card-title">Avatar Profil</div>
-                                <img src="{{ asset('storage/admin/user_image').'/'.$datas->avatar }}"
+                                <img src="{{ file_exists(public_path('storage/admin/user_image/m_').Auth::user()->avatar) ? asset('storage/admin/user_image/'.Auth::user()->avatar) : asset('storage/template/assets/images/avatars/pengguna.jpg') }}"
                                     style="width: 100%;" alt="">
                                 <div class="mb-3">
                                     <label class="form-label" for="showEasing">Ganti Avatar</label>

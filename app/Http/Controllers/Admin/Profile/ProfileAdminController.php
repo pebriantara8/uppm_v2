@@ -194,6 +194,7 @@ class ProfileAdminController extends Controller
 
     public function update(Request $request, string $id)
     {
+
         $user = User::withTrashed()->find($id);
         $input = $request->all();
         $this->validate($request, [
